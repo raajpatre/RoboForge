@@ -4,9 +4,9 @@ import { ProductCatalogClient } from "@/components/products/product-catalog-clie
 import { Cpu } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "Robotics Hardware Catalog | RoboForge",
+  title: "Robotics Components Catalog | RoboForge",
   description:
-    "Browse precision 6-DOF robotic arms, 360 LiDAR sensors, Mecanum mobile platforms, and industrial brushless motor drivers.",
+    "Browse electronic components intended for learning, hobby, prototyping and general project use.",
 };
 
 export default async function ProductsPage() {

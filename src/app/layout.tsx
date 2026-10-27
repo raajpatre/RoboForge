@@ -14,9 +14,14 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "RoboForge | Industrial Robotics & Autonomous Hardware",
+  title: "RoboForge | Robotics Components Shop",
   description:
-    "High-precision robotics components, autonomous AMR platforms, LiDAR sensors, 6-DOF arms, and motor drivers engineered for automation engineers.",
+    "electronic components intended for learning, hobby, prototyping and general project use",
+  icons: {
+    icon: "/small.png",
+    shortcut: "/small.png",
+    apple: "/small.png",
+  },
 };
 
 export default function RootLayout({
