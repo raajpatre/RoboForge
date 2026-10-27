@@ -1,0 +1,48 @@
+name: CI Quality Gate
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test-and-build:
+    name: Typecheck, Lint, Test & Build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js 22.x
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22.x
+          cache: "npm"
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: TypeScript Static Typecheck
+        run: npm run typecheck
+
+      - name: ESLint Code Quality Gate
+        run: npm run lint
+
+      - name: Run Vitest Unit & Integration Suites
+        run: npm run test
+
+      - name: Next.js Production Build Validation
+        run: npm run build
+        env:
+          NEXT_PUBLIC_APP_URL: "https://roboshopforge.local"
+          NEXT_PUBLIC_SUPABASE_URL: "https://placeholder.supabase.co"
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: "placeholder-anon-key"
+          NEXT_PUBLIC_RAZORPAY_KEY_ID: "rzp_test_placeholder"
+          SUPABASE_SERVICE_ROLE_KEY: "placeholder-service-role-key"
+          RAZORPAY_KEY_ID: "rzp_test_placeholder"
+          RAZORPAY_KEY_SECRET: "placeholder_razorpay_secret"
+          RAZORPAY_WEBHOOK_SECRET: "placeholder_webhook_secret"
+          PAYMENT_MODE: "test"
+          ADMIN_EMAILS: "admin@roboshopforge.local"
