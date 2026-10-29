@@ -21,7 +21,7 @@ export default function TermsPage() {
           Terms and Conditions
         </h1>
         <p className="mt-2 text-xs sm:text-sm text-muted-foreground">
-          Last updated: 18 October 2026
+          Last updated: 29 October 2026
         </p>
         <p className="mt-4 text-xs sm:text-sm leading-relaxed text-muted-foreground">
           These terms govern your use of our website and any order you place with RoboForge. By using the website or placing an order, you agree to these terms, our{" "}
@@ -89,10 +89,13 @@ export default function TermsPage() {
               You do not need an account. You provide your name, phone number, email address and delivery address at checkout. Please make sure they are correct, because we use them to deliver and to contact you.
             </li>
             <li>
+              <strong className="text-foreground">Serviceable Area:</strong> Currently we deliver in <strong>Bangalore, Karnataka only</strong>. We do not accept orders or ship to locations outside Bangalore or outside Karnataka at this time.
+            </li>
+            <li>
               Your order is confirmed only after payment is successful and you receive an Order ID.
             </li>
             <li>
-              We may decline or cancel an order if there is a pricing or listing error, if an item is out of stock, if we suspect fraud or misuse, or if we cannot deliver to your address. In such cases you will receive a full refund of the amount paid for the affected items.
+              We may decline or cancel an order if there is a pricing or listing error, if an item is out of stock, if we suspect fraud or misuse, or if the delivery address is outside our serviceable delivery area (Bangalore, Karnataka only). In such cases you will receive a full refund of the amount paid for the affected items.
             </li>
           </ul>
         </div>
@@ -135,7 +138,7 @@ export default function TermsPage() {
             7. Shipping and delivery
           </h2>
           <p>
-            Orders are usually delivered within 7 to 14 days of payment. These are estimates, not guarantees. Delays can happen due to courier issues, weather, local restrictions or stock availability.
+            We fulfill orders and deliver exclusively to addresses within Bangalore, Karnataka. Orders are usually delivered within 2 to 4 working days of payment. These are estimates, not guarantees. Delays can happen due to courier issues, weather, local restrictions or stock availability.
           </p>
         </div>
 

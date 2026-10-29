@@ -21,7 +21,7 @@ export default function PrivacyPolicyPage() {
           Privacy Policy
         </h1>
         <p className="mt-2 text-xs sm:text-sm text-muted-foreground">
-          Last updated: 18 October 2026
+          Last updated: 29 October 2026
         </p>
         <p className="mt-4 text-xs sm:text-sm leading-relaxed text-muted-foreground">
           This policy explains what personal information RoboForge (&ldquo;we&rdquo;, &ldquo;us&rdquo;, &ldquo;our&rdquo;) collects when you use our website, why we collect it, and what you can do about it. By placing an order on our website, you agree to the practices described here.
@@ -52,7 +52,7 @@ export default function PrivacyPolicyPage() {
           </p>
           <ul className="mt-2 list-disc list-inside space-y-1.5 pl-1">
             <li>
-              <strong className="text-foreground">Contact and delivery details:</strong> your name, phone number, email address and delivery address.
+              <strong className="text-foreground">Contact and delivery details:</strong> your name, phone number, email address and delivery address in Bangalore, Karnataka.
             </li>
             <li>
               <strong className="text-foreground">Order details:</strong> the items you ordered, order amount, Order ID and order status.
@@ -74,7 +74,7 @@ export default function PrivacyPolicyPage() {
             3. How we use your information
           </h2>
           <ul className="list-disc list-inside space-y-1.5 pl-1">
-            <li>To accept, process, dispatch and deliver your order</li>
+            <li>To accept, process, dispatch and deliver your order in Bangalore, Karnataka</li>
             <li>To process refunds and handle damage, defect or wrong-item reports</li>
             <li>To answer your questions and resolve complaints</li>
             <li>To prevent fraud and misuse of our website</li>
@@ -107,7 +107,7 @@ export default function PrivacyPolicyPage() {
               <strong className="text-foreground">Razorpay</strong>, our payment processor, to take payments and issue refunds, under its own privacy policy.
             </li>
             <li>
-              <strong className="text-foreground">Courier and logistics partners (India Post)</strong>, who receive your name, phone number and delivery address to deliver your order.
+              <strong className="text-foreground">Courier and logistics partners (local couriers & India Post)</strong>, who receive your name, phone number and delivery address solely to deliver your package to your address in Bangalore, Karnataka.
             </li>
             <li>
               <strong className="text-foreground">Authorities</strong>, if required by law, court order or a valid government request.

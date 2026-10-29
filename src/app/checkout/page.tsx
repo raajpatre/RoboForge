@@ -36,15 +36,15 @@ export default function CheckoutPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
-  // Form State
+  // Form State with Bangalore, Karnataka delivery defaults
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     line1: "",
     line2: "",
-    city: "",
-    state: "",
+    city: "Bangalore",
+    state: "Karnataka",
     postal_code: "",
   });
 
@@ -251,6 +251,14 @@ export default function CheckoutPage() {
           </div>
         )}
 
+        {/* Delivery Location Notice */}
+        <div className="mb-8 flex items-center gap-3 rounded-xl border border-red-500/40 bg-red-500/10 px-4 py-3.5 text-red-600 dark:text-red-400 shadow-xs">
+          <AlertCircle className="size-5 shrink-0" />
+          <p className="text-xs sm:text-sm font-bold tracking-wide">
+            Currently we deliver in Bangalore Karnataka only
+          </p>
+        </div>
+
         <div className="grid grid-cols-1 gap-10 lg:grid-cols-12">
           {/* Left Column: Customer & Shipping Details Form */}
           <div className="lg:col-span-7">
@@ -313,9 +321,15 @@ export default function CheckoutPage() {
 
               {/* Shipping Address */}
               <div className="rounded-xl border border-border/80 bg-card p-6 shadow-xs">
-                <h2 className="font-heading text-sm font-bold uppercase tracking-wider text-foreground mb-4">
-                  2. Heavy Freight Delivery Address
-                </h2>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
+                  <h2 className="font-heading text-sm font-bold uppercase tracking-wider text-foreground">
+                    2. Delivery Address
+                  </h2>
+                  <span className="text-xs font-bold text-red-600 dark:text-red-400 flex items-center gap-1">
+                    <AlertCircle className="size-3.5 shrink-0" />
+                    Currently we deliver in Bangalore Karnataka only
+                  </span>
+                </div>
 
                 <div className="space-y-4">
                   <div>
@@ -357,7 +371,7 @@ export default function CheckoutPage() {
                         name="city"
                         type="text"
                         required
-                        placeholder="Bengaluru"
+                        placeholder="Bangalore"
                         value={formData.city}
                         onChange={handleInputChange}
                       />

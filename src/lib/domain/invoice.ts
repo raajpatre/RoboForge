@@ -236,6 +236,7 @@ export async function getOrCreateInvoiceSnapshot(orderCode: string): Promise<Inv
       total_paise: mockOrder.total_paise,
       currency: mockOrder.currency,
       is_gst_invoice: isGst,
+      payment_method: "upi", // mock default — real method comes from Razorpay in live DB mode
     };
 
     saveMockInvoice(invoice, mockOrder.id);
@@ -272,6 +273,15 @@ export async function getOrCreateInvoiceSnapshot(orderCode: string): Promise<Inv
 
   if (existingInvoice) {
     const seller = existingInvoice.seller_snapshot as unknown as SellerSnapshot;
+
+    // Fetch payment method from the payments table for the existing snapshot
+    const { data: existingPayment } = await admin
+      .from("payments")
+      .select("method")
+      .eq("order_id", order.id)
+      .eq("status", "captured")
+      .maybeSingle();
+
     return {
       invoice_number: existingInvoice.invoice_number,
       issue_date: existingInvoice.issue_date,
@@ -285,6 +295,7 @@ export async function getOrCreateInvoiceSnapshot(orderCode: string): Promise<Inv
       total_paise: Number(existingInvoice.total_paise),
       currency: existingInvoice.currency,
       is_gst_invoice: isSellerGstRegistered(seller),
+      payment_method: existingPayment?.method ?? undefined,
     };
   }
 
@@ -384,6 +395,14 @@ export async function getOrCreateInvoiceSnapshot(orderCode: string): Promise<Inv
     }
   }
 
+  // Fetch payment method from the payments table for the new snapshot
+  const { data: newPayment } = await admin
+    .from("payments")
+    .select("method")
+    .eq("order_id", order.id)
+    .eq("status", "captured")
+    .maybeSingle();
+
   return {
     invoice_number: invoiceNumber,
     issue_date: issueDate,
@@ -397,6 +416,7 @@ export async function getOrCreateInvoiceSnapshot(orderCode: string): Promise<Inv
     total_paise: order.total_paise,
     currency: order.currency,
     is_gst_invoice: isGst,
+    payment_method: newPayment?.method ?? undefined,
   };
 }
 

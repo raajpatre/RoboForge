@@ -409,7 +409,19 @@ export async function generateInvoicePdf(invoice: InvoiceSnapshot): Promise<Uint
     color: rgb(0.1, 0.6, 0.25),
   });
 
-  page.drawText("Mode of Payment: Card", {
+  const paymentMethodLabel = (() => {
+    switch ((invoice.payment_method || "").toLowerCase()) {
+      case "upi": return "UPI";
+      case "card": return "Card (Credit / Debit)";
+      case "netbanking": return "Net Banking";
+      case "wallet": return "Wallet";
+      case "emi": return "EMI";
+      case "paylater": return "Pay Later";
+      default: return invoice.payment_method ? invoice.payment_method : "Online";
+    }
+  })();
+
+  page.drawText(`Mode of Payment: ${paymentMethodLabel}`, {
     x: wordsX,
     y: currentY - 56,
     size: 7.5,

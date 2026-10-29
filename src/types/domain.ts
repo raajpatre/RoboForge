@@ -127,6 +127,8 @@ export interface InvoiceSnapshot {
   total_paise: number;
   currency: string;
   is_gst_invoice?: boolean;
+  /** Payment method as returned by Razorpay (e.g. "card", "upi", "netbanking", "wallet"). */
+  payment_method?: string;
 }
 
 export interface CreditNoteSnapshot {

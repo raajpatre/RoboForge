@@ -189,6 +189,7 @@ export async function verifyPaymentAction(rawInput: unknown): Promise<PaymentVer
       amount_paise: expectedTotalPaise,
       currency: expectedCurrency,
       status: "captured",
+      method: paymentDetails.method,
       signature: razorpaySignature,
       raw_payload: paymentDetails as unknown as import("@/types/database").Json,
     });

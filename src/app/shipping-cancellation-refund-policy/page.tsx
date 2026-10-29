@@ -5,7 +5,7 @@ import { Truck } from "lucide-react";
 export const metadata: Metadata = {
   title: "Shipping, Cancellation and Refund Policy | RoboForge",
   description:
-    "RoboForge Shipping, Cancellation and Refund Policy: India Post delivery timelines, order tracking, cancellation terms, and Razorpay refund procedures.",
+    "RoboForge Shipping, Cancellation and Refund Policy: Bangalore delivery timelines, order tracking, cancellation terms, and Razorpay refund procedures.",
 };
 
 export default function ShippingCancellationRefundPolicyPage() {
@@ -21,7 +21,7 @@ export default function ShippingCancellationRefundPolicyPage() {
           Shipping, Cancellation and Refund Policy
         </h1>
         <p className="mt-2 text-xs sm:text-sm text-muted-foreground">
-          Last updated: 18 October 2026
+          Last updated: 29 October 2026
         </p>
       </section>
 
@@ -32,23 +32,25 @@ export default function ShippingCancellationRefundPolicyPage() {
             1. Shipping and delivery
           </h2>
           <ul className="list-disc list-inside space-y-1.5 pl-1">
-            <li>We ship to addresses across India. We do not ship outside India.</li>
-            <li>We dispatch orders within 1 to 3 working days of a confirmed payment.</li>
             <li>
-              Delivery usually takes 7 to 14 days from the date of payment. This is an estimate and not a guarantee. Remote areas may take longer.
+              <strong className="text-foreground">Serviceable Area:</strong> Currently we deliver in <strong>Bangalore, Karnataka only</strong>. We do not deliver to addresses outside Bangalore, outside Karnataka, or internationally at this time.
+            </li>
+            <li>We dispatch orders within 1 to 2 working days of a confirmed payment.</li>
+            <li>
+              Delivery in Bangalore usually takes 2 to 4 working days from the date of payment. This is an estimate and not a guarantee.
             </li>
             <li>
               Shipping charges: free on orders above ₹500; for orders of ₹500 or less, shipping charge is shown at checkout before you pay.
             </li>
             <li>
-              We ship through India Post. Tracking details, where available, will be shared by email or SMS.
+              We ship through local courier partners and India Post. Tracking details, where available, will be shared by email or SMS.
             </li>
             <li>Orders with several items may be shipped in separate packages.</li>
             <li>
-              Please give a complete and correct address and a reachable phone number. If delivery fails because of a wrong address or because you were unreachable, we may charge the re-shipping cost, or the order may be returned to us.
+              Please provide a complete and correct address in Bangalore and a reachable phone number. If delivery fails because of a wrong address or because you were unreachable, we may charge the re-shipping cost, or the order may be returned to us.
             </li>
             <li>
-              If your order has not arrived within 21 days of payment, contact us at{" "}
+              If your order has not arrived within 10 days of payment, contact us at{" "}
               <a href="mailto:raajpatre023@gmail.com" className="font-mono text-primary hover:underline">
                 raajpatre023@gmail.com
               </a>{" "}
@@ -75,7 +77,7 @@ export default function ShippingCancellationRefundPolicyPage() {
               Customers cannot cancel orders after they are placed. Please check your cart, product specifications and compatibility before paying.
             </li>
             <li>
-              We may cancel an order if an item is out of stock, if there is a pricing or listing error, if we cannot deliver to your location, or if we suspect fraud. We will inform you by email, SMS or phone.
+              We may cancel an order if an item is out of stock, if there is a pricing or listing error, if the delivery address is outside our serviceable delivery area (Bangalore, Karnataka only), or if we suspect fraud. We will inform you by email, SMS or phone.
             </li>
             <li>
               If only some items in an order are unavailable, we may cancel those items and either ship the rest or cancel the whole order after checking with you. You get a refund for the cancelled items.
