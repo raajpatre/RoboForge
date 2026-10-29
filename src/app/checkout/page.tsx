@@ -101,6 +101,9 @@ export default function CheckoutPage() {
         return;
       }
 
+      const activeOrderCode = session.orderCode;
+      const activeRazorpayOrderId = session.razorpayOrderId;
+
       // Check if Razorpay script loaded
       const RazorpayConstructor = window.Razorpay as
         | (new (options: unknown) => { open: () => void })
@@ -112,15 +115,15 @@ export default function CheckoutPage() {
         const mockPaymentId = `pay_mock_${Date.now()}`;
 
         const verification = await verifyPaymentAction({
-          orderCode: session.orderCode,
-          razorpayOrderId: session.razorpayOrderId,
+          orderCode: activeOrderCode,
+          razorpayOrderId: activeRazorpayOrderId,
           razorpayPaymentId: mockPaymentId,
           razorpaySignature: mockSignature,
         });
 
         if (verification.success) {
           clearCart();
-          router.push(`/track?code=${session.orderCode}&confirmed=true`);
+          router.push(`/track?code=${activeOrderCode}&confirmed=true`);
         } else {
           setErrorMessage(verification.error || "Test payment verification failed.");
           setIsSubmitting(false);
@@ -134,27 +137,37 @@ export default function CheckoutPage() {
         amount: session.amountPaise,
         currency: "INR",
         name: session.storeName || "RoboForge",
-        description: `Robotics Hardware Order ${session.orderCode}`,
-        order_id: session.razorpayOrderId,
+        description: `Robotics Hardware Order ${activeOrderCode}`,
+        order_id: activeRazorpayOrderId,
+        callback_url: `${window.location.origin}/api/payment/callback?orderCode=${encodeURIComponent(activeOrderCode)}`,
         handler: async function (response: {
           razorpay_payment_id: string;
           razorpay_order_id: string;
           razorpay_signature: string;
         }) {
           setIsSubmitting(true);
-          const verification = await verifyPaymentAction({
-            orderCode: session.orderCode,
-            razorpayOrderId: response.razorpay_order_id,
-            razorpayPaymentId: response.razorpay_payment_id,
-            razorpaySignature: response.razorpay_signature,
-          });
+          try {
+            const verification = await verifyPaymentAction({
+              orderCode: activeOrderCode,
+              razorpayOrderId: response.razorpay_order_id,
+              razorpayPaymentId: response.razorpay_payment_id,
+              razorpaySignature: response.razorpay_signature,
+            });
 
-          if (verification.success) {
+            if (verification.success) {
+              clearCart();
+              window.location.href = `/track?code=${encodeURIComponent(activeOrderCode)}&confirmed=true`;
+            } else {
+              setErrorMessage(verification.error || "Payment verification incomplete. Please check your order status.");
+              setIsSubmitting(false);
+            }
+          } catch (err: unknown) {
+            console.error("Payment confirmation error:", err);
+            // Safe fallback: Since Razorpay confirmed the payment ID in the modal,
+            // clear the local cart and navigate the customer directly to tracking
+            // where the webhook or order tracking query can display their live order.
             clearCart();
-            router.push(`/track?code=${session.orderCode}&confirmed=true`);
-          } else {
-            setErrorMessage(verification.error || "Server signature verification failed.");
-            setIsSubmitting(false);
+            window.location.href = `/track?code=${encodeURIComponent(activeOrderCode)}&confirmed=true`;
           }
         },
         prefill: {

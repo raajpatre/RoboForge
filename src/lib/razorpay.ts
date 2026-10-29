@@ -59,8 +59,8 @@ export function getRazorpayClient(): Razorpay | null {
 
   if (!razorpayClientInstance) {
     razorpayClientInstance = new Razorpay({
-      key_id: env.RAZORPAY_KEY_ID,
-      key_secret: env.RAZORPAY_KEY_SECRET,
+      key_id: env.RAZORPAY_KEY_ID.trim(),
+      key_secret: env.RAZORPAY_KEY_SECRET.trim(),
     });
   }
 
@@ -137,7 +137,7 @@ export function verifyPaymentSignature(params: VerifyPaymentParams): boolean {
   try {
     const text = `${orderId}|${paymentId}`;
     const expected = crypto
-      .createHmac("sha256", env.RAZORPAY_KEY_SECRET)
+      .createHmac("sha256", env.RAZORPAY_KEY_SECRET.trim())
       .update(text)
       .digest("hex");
 
@@ -172,7 +172,7 @@ export function verifyWebhookSignature(payload: string, signature: string): bool
 
   try {
     const expected = crypto
-      .createHmac("sha256", env.RAZORPAY_WEBHOOK_SECRET)
+      .createHmac("sha256", env.RAZORPAY_WEBHOOK_SECRET.trim())
       .update(payload)
       .digest("hex");
 
